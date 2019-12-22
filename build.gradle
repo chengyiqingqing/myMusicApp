@@ -1,0 +1,68 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+apply from: this.rootProject.file('imooc.gradle')
+
+buildscript {
+    repositories {
+        google()
+        jcenter()
+        // 为plugin(gradle)配置
+        mavenCentral()
+        maven {
+            // 这是我们maven私服的仓库地址
+            url 'http://localhost:8081/repository/imooc_releases/'
+            // 我们私服的用户名和密码
+            credentials {
+                username 'admin'
+                password 'q20082008q'
+            }
+        }
+        maven {
+            // 这是我们maven私服的仓库地址
+            url 'http://localhost:8081/repository/imooc_snapshots/'
+            // 我们私服的用户名和密码
+            credentials {
+                username 'admin'
+                password 'q20082008q'
+            }
+        }
+        // 还没完呢，这里添加了私服，只是为gradle构建添加了仓库。（还要为java工程和kotlin工程添加仓库，在allprojects）
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.3.2'
+
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+        // 为工程配置
+//        mavenCentral()
+        maven { url "https://jitpack.io" }
+        maven {
+            // 这是我们maven私服的仓库地址
+            url 'http://localhost:8081/repository/imooc_releases/'
+            // 我们私服的用户名和密码
+            credentials {
+                username 'admin'
+                password 'q20082008q'
+            }
+        }
+        maven {
+            // 这是我们maven私服的仓库地址
+            url 'http://localhost:8081/repository/imooc_snapshots/'
+            // 我们私服的用户名和密码
+            credentials {
+                username 'admin'
+                password 'q20082008q'
+            }
+        }
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
